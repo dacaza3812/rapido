@@ -16,15 +16,15 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.dacaza.rapido",
       "config": {
-                "googleMapsApiKey": "YOUR_GOOGLE_MAP_KEY"
-            }
+        "googleMapsApiKey": "YOUR_GOOGLE_MAP_KEY"
+      }
     },
     "android": {
       "config": {
-                "googleMaps": {
-                    "apiKey": "YOUR_GOOGLE_MAP_KEY"
-                }
-            },
+        "googleMaps": {
+          "apiKey": "YOUR_GOOGLE_MAP_KEY"
+        }
+      },
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -43,7 +43,8 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
