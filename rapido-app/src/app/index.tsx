@@ -1,10 +1,15 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
+import { commonStyles } from '@/styles/commonStyles'
+import { splashStyles } from '@/styles/splashStyles'
 
 const Main = () => {
   return (
-    <View>
-      <Text>Main</Text>
+    <View style={commonStyles.container}>
+      <Image
+      source={require("@/assets/images/logo_t.png")}
+        style={splashStyles.img}
+      />
     </View>
   )
 }
