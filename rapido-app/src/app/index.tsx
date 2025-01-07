@@ -39,7 +39,7 @@ const Main = () => {
         style={splashStyles.img}
       />
       <CustomText variant='h5' fontFamily='Medium' style={splashStyles.text}>
-        Desarrollado con ❤ en Las Tunas
+        Desarrollado con ❤ en 🇨🇺
       </CustomText>
     </View>
   )
