@@ -2,14 +2,15 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { roleStyles } from '@/styles/roleStyles'
 import CustomText from '@/components/shared/CustomText'
+import { router } from 'expo-router'
 
 const Role = () => {
     const handleCustomerPress = () => {
-        
+        router.navigate("/customer/auth")
     }
 
     const handleCaptainPress = () => {
-        
+        router.navigate("/captain/auth")
     }
 
   return (
