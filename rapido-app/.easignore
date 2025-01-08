@@ -9,7 +9,6 @@ dist/
 android
 web-build/
 expo-env.d.ts
-.vscode
 
 # Native
 *.orig.*
@@ -21,6 +20,7 @@ expo-env.d.ts
 
 # Metro
 .metro-health-check*
+.vscode
 
 # debug
 npm-debug.*
