@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useUserStore } from "@/store/userStore";
+import { useUserStor } from "@/store/userStore";
 
 export const getLatLong = async (placeId: string) => {
     try {
@@ -54,7 +54,7 @@ function extractPlaceData(data: any) {
 }
 
 export const getPlacesSuggestions = async (query: string) => {
-    const { location } = useUserStore.getState();
+    const { location } = useUserStor.getState();
     try {
         const response = await axios.get(
             `https://maps.googleapis.com/maps/api/place/autocomplete/json`, {
