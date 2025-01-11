@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native'
+import { View, SafeAreaView, Image, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { authStyles } from '@/styles/authStyles'
 import { ScrollView } from 'react-native-gesture-handler'
@@ -6,9 +6,24 @@ import { commonStyles } from '@/styles/commonStyles'
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 import CustomText from '@/components/shared/CustomText'
 import PhoneInput from '@/components/shared/PhoneInput'
+import CustomButton from '@/components/shared/CustomButton'
+import { resetAndNavigate } from '@/utils/Helpers'
+import { signin } from '@/service/authService'
 
 const Auth = () => {
     const [phone, setPhone] = useState("")
+
+    const handleNext = async () => {
+
+        if(!phone && phone.length !== 8){
+            Alert.alert("Bro....pon tu numero de cel")
+            return
+        }
+        signin({
+            role: "customer",
+            phone
+        })
+    }
 
   return (
     <SafeAreaView style={authStyles.container}>
@@ -37,9 +52,17 @@ const Auth = () => {
             />
 
             <View style={authStyles.footerContainer}>
+
                 <CustomText variant='h8' fontFamily='Regular' style={[commonStyles.lightText, {textAlign: "center", marginHorizontal: 20}]}>
                     Al continuar, aceptas los términos y condiciones de Rapido
                 </CustomText>
+
+                <CustomButton
+                    title="Siguiente"
+                    onPress={handleNext}
+                    loading={false}
+                    disabled={false}
+                />
             </View>
 
         </ScrollView>

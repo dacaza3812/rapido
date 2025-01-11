@@ -15,6 +15,7 @@ const PhoneInput: FC<PhoneInputProps> = ({
       🇨🇺 +53
       </CustomText>
       <TextInput
+        
         placeholder='00000000'
         keyboardType='phone-pad'
         maxLength={8}
