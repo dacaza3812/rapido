@@ -9,7 +9,9 @@ import { BASE_URL } from "./config"
 export const signin = async (payload: {
     role: "customer" | "captain",
     phone: string
-}) => {
+},
+    updateAccessToken: () => void
+) => {
     const {setUser} = useUserStorage.getState()
     const {setUser: setCaptainUser} = useCaptainStorage.getState()
 
@@ -28,7 +30,7 @@ export const signin = async (payload: {
         }else {
             resetAndNavigate("/captain/home")
         }
-
+        updateAccessToken()
     } catch (error: any) {
         Alert.alert("Oh! Hubo un error");
         console.log("Error: ", error?.response?.data?.msg || "Error al iniciar sesión")

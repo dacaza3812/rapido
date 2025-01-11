@@ -7,10 +7,11 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 import CustomText from '@/components/shared/CustomText'
 import PhoneInput from '@/components/shared/PhoneInput'
 import CustomButton from '@/components/shared/CustomButton'
-import { resetAndNavigate } from '@/utils/Helpers'
 import { signin } from '@/service/authService'
+import { useWS } from '@/service/WSProvider'
 
 const Auth = () => {
+    const {updateAccessToken} = useWS()
     const [phone, setPhone] = useState("")
 
     const handleNext = async () => {
@@ -22,7 +23,7 @@ const Auth = () => {
         signin({
             role: "customer",
             phone
-        })
+        }, updateAccessToken)
     }
 
   return (
