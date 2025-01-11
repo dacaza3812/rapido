@@ -1,6 +1,6 @@
 import { useCaptainStorage } from "@/store/captainStore"
 import { tokenStorage } from "@/store/storage"
-import { useUserStorage } from "@/store/userStore"
+import { useUserStor } from "@/store/userStore"
 import { resetAndNavigate } from "@/utils/Helpers"
 import axios from "axios"
 import { Alert } from "react-native"
@@ -12,7 +12,7 @@ export const signin = async (payload: {
 },
     updateAccessToken: () => void
 ) => {
-    const {setUser} = useUserStorage.getState()
+    const {setUser} = useUserStor.getState()
     const {setUser: setCaptainUser} = useCaptainStorage.getState()
 
     try {
@@ -38,7 +38,7 @@ export const signin = async (payload: {
 }
 
 export const logout = async () => {
-    const {clearData} = useUserStorage.getState()
+    const {clearData} = useUserStor.getState()
     const {clearCaptainData} = useCaptainStorage.getState()
 
     tokenStorage.clearAll()
