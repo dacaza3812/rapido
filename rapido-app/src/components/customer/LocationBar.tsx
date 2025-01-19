@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { useUserStor } from '@/store/userStore'
+import { useUserStore } from '@/store/userStore'
 import { useWS } from '@/service/WSProvider'
 import { uiStyles } from '@/styles/uiStyles'
 import Ionicos from '@expo/vector-icons/Ionicons'
@@ -10,7 +10,7 @@ import { router } from 'expo-router'
 import CustomText from '../shared/CustomText'
 
 const LocationBar = () => {
-    const {location} = useUserStor()
+    const {location} = useUserStore()
     const {disconnect} = useWS()
   return (
     <View style={uiStyles.absoluteTop}>

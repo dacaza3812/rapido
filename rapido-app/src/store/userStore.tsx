@@ -18,7 +18,7 @@ interface UserStorageProps {
     clearData: () => void;
 }
 
-export const useUserStor = create<UserStorageProps>()(
+export const useUserStore = create<UserStorageProps>()(
     persist(
         (set) => ({
             user: null,

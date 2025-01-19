@@ -8,7 +8,7 @@ import { resetAndNavigate } from '@/utils/Helpers'
 import {jwtDecode} from 'jwt-decode'
 import { tokenStorage } from '@/store/storage'
 import { refresh_tokens } from '@/service/apiInterceptors'
-import { useUserStor } from '@/store/userStore'
+import { useUserStore } from '@/store/userStore'
 
 interface DecodedToken {
   exp: number
@@ -23,7 +23,7 @@ const Main = () => {
     SemiBold: require("../assets/fonts/NotoSans-SemiBold.ttf"),
   })
 
-  const {user} = useUserStor()
+  const {user} = useUserStore()
 
   const [hasNavigated, setHasNavigated] = useState(false)
 
