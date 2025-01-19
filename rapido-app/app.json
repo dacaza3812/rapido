@@ -17,13 +17,13 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.dacaza.rapido",
       "config": {
-        "googleMapsApiKey": "YOUR_GOOGLE_MAP_KEY"
+        "googleMapsApiKey": "AIzaSyD0o9J_DVjl6z8flmxGNTN9-DD9i112y8o"
       }
     },
     "android": {
       "config": {
         "googleMaps": {
-          "apiKey": "YOUR_GOOGLE_MAP_KEY"
+          "apiKey": "AIzaSyD0o9J_DVjl6z8flmxGNTN9-DD9i112y8o"
         }
       },
       "adaptiveIcon": {

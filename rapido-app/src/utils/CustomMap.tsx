@@ -53,9 +53,10 @@ export const customMapStyle = [
   }
 ]
 
-export const indiaIntialRegion = {
-  latitude: 28.6139,
-  longitude: 77.2090,
+export const tunasIntialRegion = {
+  latitude: 20.9626,
+  longitude: -76.9606,
   latitudeDelta: 0.5,
   longitudeDelta: 0.5,
 }
+// 20.962636656524953, -76.96067947257785
