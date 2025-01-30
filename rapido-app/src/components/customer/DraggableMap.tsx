@@ -1,5 +1,5 @@
 import { Image, TouchableOpacity, View } from 'react-native'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, memo, useEffect, useRef, useState } from 'react'
 import MapView, { Marker, Region } from 'react-native-maps'
 import {  customMapStyle, tunasIntialRegion } from '@/utils/CustomMap'
 import { mapStyles } from '@/styles/mapStyles'
@@ -121,10 +121,6 @@ const DraggableMap: FC<{height: number}> = ({height}) => {
     // SIMULATION OF CAPTAIN MARKERS
     useEffect(() => {
       generateRandomMarkers();
-    /*  const intervalId = setInterval(() => {
-        updateMarkers();
-      }, 5000);
-      return () => clearInterval(intervalId) */
     }, [location])
 
     console.log(location)
@@ -220,5 +216,5 @@ const DraggableMap: FC<{height: number}> = ({height}) => {
   )
 }
 
-export default DraggableMap
+export default memo(DraggableMap)
 
