@@ -124,3 +124,5 @@ FA:C2:34:61:2C:59:9E:0F:08:72:17:6A:CA:D1:1E:66:1B:D5:64:15
     https://docs.mapbox.com/api/search/search-box/
     https://console.mapbox.com/account/statistics/?from=12-31-2024&to=01-30-2025
     https://docs.mapbox.com/api/search/geocoding/
+
+    todo funciona bien
