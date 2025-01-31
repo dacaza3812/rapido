@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useUserStore } from "@/store/userStore";
 
-export const getLatLong = async (placeId: string) => {
+export const getLatLong = async (placeId: string, description: string) => {
     try {
-        const response = await axios.get("https://api.mapbox.com/geocoding/v5/mapbox.places/details.json", {
+        const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${description}.json`, {
             params: {
                 placeid: placeId,
                 access_token: "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ",
@@ -70,6 +70,8 @@ export const getPlacesSuggestions = async (query: string) => {
                 }
             }
         );
+
+        console.log("RESPONSE", location)
 
         // Procesar los resultados de Mapbox para que coincidan con tu estructura
         return extractPlaceData(response.data.features);
