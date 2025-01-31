@@ -1,4 +1,4 @@
-import { FlatList, Image, Platform, SafeAreaView, Text, TouchableOpacity, View, } from 'react-native'
+import { Alert, FlatList, Image, Platform, SafeAreaView, Text, TouchableOpacity, View, } from 'react-native'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { homeStyles } from '@/styles/homeStyles'
 import { StatusBar } from 'expo-status-bar'
@@ -10,12 +10,14 @@ import { commonStyles } from '@/styles/commonStyles'
 import { router } from 'expo-router'
 import CustomText from '@/components/shared/CustomText'
 import { uiStyles } from '@/styles/uiStyles'
-import LocationInput from './LocationInput'
-import { getLatLong, getPlacesSuggestions } from '@/utils/mapUtils'
+
+import { calculateDistance, getLatLong, getPlacesSuggestions } from '@/utils/mapUtils'
 import { locationStyles } from '@/styles/locationStyles'
 import { useUserStore } from '@/store/userStore'
-import LocationItem from './LocationItem'
-import MapPickerModal from './MapPickerModal'
+import LocationItem from '@/components/customer/LocationItem'
+import LocationInput from '@/components/customer/LocationInput'
+import MapPickerModal from '@/components/customer/MapPickerModal'
+
 
 type focusType = "drop" | "pickup"
 
@@ -45,6 +47,50 @@ const Selectlocations = () => {
       setPickup(location?.address)
     }
   }, [location])
+
+  const checkDistance = async () => {
+    if(!pickupCoords || !dropCoords) return
+
+    const {latitude: lat1, longitude: lon1} = pickupCoords
+    const {latitude: lat2, longitude: lon2} = dropCoords
+
+    if(lat1 === lat2 && lon1 === lon2){
+      alert("La dirección de recogida y de entrega no puede ser la misma.")
+      return
+    }
+
+    const distance = calculateDistance(lat1, lon1, lat2, lon2)
+
+    const minDistance = 0.5; // Distancia mínima en km (e.j: 500 metros)
+    const maxDistance = 20; // Distancia máxima en km (e.j: 20 km)
+
+    if (distance < minDistance){
+      alert("Las distancias seleccionadas son muy cercanas.")
+    }else if( distance > maxDistance){
+      alert("Las distancias seleccionadas están demasiado lejos.")
+    }else{
+      setLocations([])
+      router.navigate({
+        pathname: "/customer/ridebooking",
+        params: {
+          distanceInKm: distance.toFixed(2),
+          drop_latitude: dropCoords?.latitude,
+          drop_longitude: dropCoords?.longitude,
+          drop_address: drop
+        }
+      })
+      setMapModalVisible(false)
+      console.log(`Distance is valid: ${distance.toFixed(2)} km`)
+    }
+  }
+
+  useEffect(() => {
+    if(dropCoords && pickupCoords){
+      checkDistance()
+    }else{
+      setLocations([])
+    }
+  }, [dropCoords, pickupCoords])
 
   const addLocation = async (id: string, description: string) => {
     const data = await getLatLong(id, description)

@@ -1,5 +1,5 @@
 import { View, Text, Modal, TouchableOpacity, TextInput, FlatList, Image } from 'react-native'
-import React, { FC, useRef, useState } from 'react'
+import React, { FC, memo, useEffect, useRef, useState } from 'react'
 import { modalStyles } from '@/styles/modalStyles';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -43,6 +43,26 @@ const MapPickerModal:FC<MapPickerModalProps> = ({visible, selectedLocation, onCl
             setLocations([])
         }
     }
+
+    useEffect(()=> {
+        if(selectedLocation?.latitude){
+            setAddress(selectedLocation?.address)
+            setRegion({
+                latitude: selectedLocation?.latitude,
+                longitude: selectedLocation?.longitude,
+                latitudeDelta: 0.5,
+                longitudeDelta: 0.5
+            })
+
+            mapRef?.current?.fitToCoordinates([{
+                latitude: selectedLocation?.latitude,
+                longitude: selectedLocation?.longitude
+            }], {
+                edgePadding: {top: 50, left: 50, bottom: 50, right: 50},
+                animated: true
+            })
+        }
+    }, [selectedLocation, mapRef])
 
     const addLocation = async (place_id: string, description: string) => {
         const data = await getLatLong(place_id, description) 
@@ -112,7 +132,7 @@ const MapPickerModal:FC<MapPickerModalProps> = ({visible, selectedLocation, onCl
             <TouchableOpacity onPress={onClose}>
                 <Text style={modalStyles?.cancelButton}>Cancelar</Text>
             </TouchableOpacity>
-        </View>
+        
 
         <View style={modalStyles.searchContainer}>
             <Ionicons name='search-outline' size={RFValue(16)} color="#777"/>
@@ -161,8 +181,8 @@ const MapPickerModal:FC<MapPickerModalProps> = ({visible, selectedLocation, onCl
                     initialRegion={{
                         latitude: region?.latitude ?? location?.latitude ?? tunasIntialRegion?.latitude,
                         longitude: region?.longitude ?? location?.longitude ?? tunasIntialRegion?.longitude,
-                        latitudeDelta: 0.5,
-                        longitudeDelta: 0.5
+                        latitudeDelta: 6.5,
+                        longitudeDelta: 6.5
                     }}
                     provider='google'
                     customMapStyle={customMapStyle}
@@ -200,6 +220,7 @@ const MapPickerModal:FC<MapPickerModalProps> = ({visible, selectedLocation, onCl
                                     longitude: region?.longitude,
                                     address: address
                                 })
+                                onClose()
                             }}
                         >
                             <Text style={modalStyles.buttonText}>
@@ -210,9 +231,9 @@ const MapPickerModal:FC<MapPickerModalProps> = ({visible, selectedLocation, onCl
                 </View>
             </>
         }
-
+    </View>
     </Modal>
   )
 }
 
-export default MapPickerModal
+export default memo(MapPickerModal) 
