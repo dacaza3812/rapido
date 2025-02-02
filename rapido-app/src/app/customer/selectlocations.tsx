@@ -89,6 +89,7 @@ const Selectlocations = () => {
       checkDistance()
     }else{
       setLocations([])
+      setMapModalVisible(false)
     }
   }, [dropCoords, pickupCoords])
 
