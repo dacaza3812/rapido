@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useUserStore } from "@/store/userStore";
+const apikey = process.env.EXPO_PUBLIC_MAPBOX_API_KEY || ""
 
 export const getLatLong = async (placeId: string, description: string) => {
     try {
         const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${description}.json`, {
             params: {
                 placeid: placeId,
-                access_token: "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ",
+                access_token: apikey,
             },
         });
         const data = response.data;
@@ -33,7 +34,7 @@ export const reverseGeocode = async (latitude: number, longitude: number) => {
             `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json`,
             {
                 params: {
-                    access_token: "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ",
+                    access_token: apikey,
                 }
             }
         );
@@ -66,7 +67,7 @@ export const getPlacesSuggestions = async (query: string) => {
             {
                 params: {
                     proximity: `${location?.longitude},${location?.latitude}`,
-                    access_token: "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ",
+                    access_token: apikey,
                 }
             }
         );
