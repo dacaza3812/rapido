@@ -37,7 +37,11 @@ export const signin = async (payload: {
     }
 }
 
-export const logout = async () => {
+export const logout = async (disconnect?: () => void) => {
+
+    if(disconnect){
+        disconnect()
+    }
     const {clearData} = useUserStore.getState()
     const {clearCaptainData} = useCaptainStorage.getState()
 
