@@ -61,7 +61,7 @@ const Selectlocations = () => {
 
     const distance = calculateDistance(lat1, lon1, lat2, lon2)
 
-    const minDistance = 0.5; // Distancia mínima en km (e.j: 500 metros)
+    const minDistance = 0.3; // Distancia mínima en km (e.j: 500 metros)
     const maxDistance = 20; // Distancia máxima en km (e.j: 20 km)
 
     if (distance < minDistance){

@@ -8,6 +8,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { Colors } from '@/utils/Constants'
 import { router } from 'expo-router'
 import CustomText from '../shared/CustomText'
+import { logout } from '@/service/authService'
 
 const LocationBar = () => {
     const {location} = useUserStore()
@@ -16,8 +17,8 @@ const LocationBar = () => {
     <View style={uiStyles.absoluteTop}>
       <SafeAreaView/>
       <View style={uiStyles.container}>
-        <TouchableOpacity>
-            <Ionicos name='menu-outline' size={RFValue(18)} color={Colors.text}/>
+        <TouchableOpacity style={uiStyles.btn} onPress={() => logout(disconnect)}>
+            <Ionicos name='log-out-outline' size={RFValue(18)} color={Colors.text}/>
         </TouchableOpacity>
 
         <TouchableOpacity style={uiStyles.locationBar}

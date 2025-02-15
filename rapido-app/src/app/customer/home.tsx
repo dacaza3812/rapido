@@ -1,5 +1,5 @@
 import { Platform, View,  } from 'react-native'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {StatusBar} from 'expo-status-bar'
 import LocationBar from '@/components/customer/LocationBar'
 import { homeStyles } from '@/styles/homeStyles'
@@ -7,6 +7,7 @@ import DraggableMap from '@/components/customer/DraggableMap'
 import { screenHeight } from '@/utils/Constants'
 import  BottomSheet, {BottomSheetScrollView} from "@gorhom/bottom-sheet"
 import SheetContent from '@/components/customer/SheetContent'
+import { getMyRides } from '@/service/rideService'
 
 const androidHeights = [screenHeight * 0.12, screenHeight * 0.42,]
 const ioseights = [screenHeight * 0.2, screenHeight *0.5,]
@@ -23,6 +24,10 @@ const Home = () => {
               height = screenHeight * 0.5
           }
           setMapHeight(height)
+      }, [])
+
+      useEffect(() => {
+        getMyRides()
       }, [])
 
   return (

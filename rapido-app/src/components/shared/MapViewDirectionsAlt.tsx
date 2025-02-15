@@ -86,7 +86,7 @@ const MapViewDirectionsAlt: React.FC<MapViewDirectionsAltProps> = ({
   if (coords.length === 0) {
     return null;
   }
-console.log("COORDENADAS", coords)
+
   return (
     <Polyline
       coordinates={coords}

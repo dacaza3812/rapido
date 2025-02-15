@@ -12,8 +12,8 @@ const apikey = process.env.EXPO_PUBLIC_MAPBOX_API_KEY || ""
 
 const RoutesMap:FC<{drop:any,pickup:any}> = ({drop, pickup}) => {
     const mapRef = useRef<MapView>(null)
-
-    const fitToMarkers = async () => {
+    
+    const fitToMarkers = async() => {
         const coordinates = []
 
         if(pickup?.latitude && pickup?.longitude){
@@ -34,24 +34,31 @@ const RoutesMap:FC<{drop:any,pickup:any}> = ({drop, pickup}) => {
 
         try {
             mapRef.current?.fitToCoordinates(coordinates, {
-                edgePadding: {top: 50, right: 50, bottom: 50, left: 50},
+                edgePadding: {top: 50, right: 50, bottom:50, left: 50},
                 animated: true
             })
-        } catch (err) {
-            console.log("Error ", err)
+        } catch (error) {
+            console.log(error)
         }
     }
 
     const fitToMarkersWithDelay = () => {
         setTimeout(() => {
             fitToMarkers();
-        }, 500)
+        }, 500);
     }
+
+    useEffect(() => {
+        if(drop?.latitude && pickup?.latitude){
+           fitToMarkersWithDelay() 
+        }
+        
+    }, [drop?.latitude, pickup?.latitude, mapRef])
 
     const calculateInitialRegion = () => {
         if(pickup?.latitude && drop?.latitude){
-            const latitude = (pickup?.latitude + drop?.latitude) /2
-            const longitude = (pickup?.longitude + drop?.longitude) /2
+            const latitude = (pickup?.latitude + drop?.latitude) / 2
+            const longitude = (pickup?.longitude + drop?.longitude) / 2
             return {
                 latitude,
                 longitude,
@@ -62,27 +69,22 @@ const RoutesMap:FC<{drop:any,pickup:any}> = ({drop, pickup}) => {
         return tunasIntialRegion
     }
 
-    useEffect(() => {
-        if(drop?.latitude && pickup?.latitude){
-            fitToMarkersWithDelay()
-        }
-    }, [drop?.latitude, pickup?.latitude, mapRef])
-
   return (
     <View style={{flex: 1}}>
-        <MapView
-            ref={mapRef}
-            followsUserLocation
-            style={{flex: 1}}
-            initialRegion={calculateInitialRegion()}
-            provider='google'
-            showsMyLocationButton={false}
-            showsCompass={false}
-            showsIndoors={false}
-            customMapStyle={customMapStyle}
-            showsUserLocation={true}
-        >
-            {
+       <MapView
+        ref={mapRef}
+        followsUserLocation
+        style={{flex: 1}}
+        initialRegion={calculateInitialRegion()}
+        provider='google'
+        showsCompass={false}
+        showsIndoors={false}
+        showsMyLocationButton={false}
+        customMapStyle={customMapStyle}
+        showsUserLocation={true}
+       >
+
+{ 
                 drop?.latitude && pickup?.latitude && (
                     <MapViewDirectionsAlt
                         origin={pickup}
@@ -94,15 +96,16 @@ const RoutesMap:FC<{drop:any,pickup:any}> = ({drop, pickup}) => {
                         strokeColor="#0f53ff"
                         onError={(err) => console.log(err)}
                     />
-                )
+                ) 
             }
+       
 
             {
                 drop?.latitude && (
                     <Marker
                         coordinate={{latitude: drop.latitude, longitude: drop.longitude}}
                         anchor={{x: 0.5, y:1}}
-                        zIndex={1}
+                        zIndex={10}
                     >
                         <Image
                             source={require("@/assets/icons/drop_marker.png")}
@@ -117,7 +120,7 @@ const RoutesMap:FC<{drop:any,pickup:any}> = ({drop, pickup}) => {
                     <Marker
                         coordinate={{latitude: pickup.latitude, longitude: pickup.longitude}}
                         anchor={{x: 0.5, y:1}}
-                        zIndex={2}
+                        zIndex={200}
                     >
                         <Image
                             source={require("@/assets/icons/marker.png")}
@@ -126,8 +129,8 @@ const RoutesMap:FC<{drop:any,pickup:any}> = ({drop, pickup}) => {
                     </Marker>
                 ) 
             }
-
-        </MapView>
+            
+       </MapView>
     <TouchableOpacity style={mapStyles.gpsButton} onPress={fitToMarkers}>
         <MaterialCommunityIcons name='crosshairs-gps' size={RFValue(16)} color="#3C75BE"/>
     </TouchableOpacity>
