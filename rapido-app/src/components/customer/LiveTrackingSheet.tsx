@@ -35,7 +35,7 @@ const LiveTrackingSheet: FC<{ item: RideItem }> = ({ item }) => {
             )
           }
 
-
+          <View>
           <CustomText fontSize={10}>
             {
               item?.status === "START" ? "Choferes cerca de ti" :
@@ -48,6 +48,7 @@ const LiveTrackingSheet: FC<{ item: RideItem }> = ({ item }) => {
           <CustomText>
             {item?.status === "START" ? `OTP - ${item?.otp}` : " "}
           </CustomText>
+          </View>
         </View>
 
         <CustomText fontSize={11} numberOfLines={1} fontFamily='Medium'>

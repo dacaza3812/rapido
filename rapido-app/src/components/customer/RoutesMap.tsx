@@ -8,7 +8,7 @@ import { customMapStyle, tunasIntialRegion } from '@/utils/CustomMap'
 import MapViewDirections from "react-native-maps-directions"
 import MapViewDirectionsAlt from '../shared/MapViewDirectionsAlt'
 
-const apikey = process.env.EXPO_PUBLIC_MAPBOX_API_KEY || ""
+const apikey = process.env.EXPO_PUBLIC_MAPBOX_API_KEY || "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ"
 
 const RoutesMap:FC<{drop:any,pickup:any}> = ({drop, pickup}) => {
     const mapRef = useRef<MapView>(null)

@@ -122,7 +122,7 @@ const LiveRide = () => {
         >
           <BottomSheetScrollView contentContainerStyle={rideStyles?.container}>
             {
-              rideData?.status !== "SEARCHING_FOR_CAPTAIN" ?
+              rideData?.status === "SEARCHING_FOR_CAPTAIN" ?
                 <SearchingRideSheet item={rideData}/>
                 :
                 <LiveTrackingSheet item={rideData} />

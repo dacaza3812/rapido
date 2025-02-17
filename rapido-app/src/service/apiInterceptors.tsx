@@ -5,13 +5,13 @@ import { resetAndNavigate } from "@/utils/Helpers";
 import { logout } from "./authService";
 
 export const appAxios = axios.create({
-    baseURL: BASE_URL
+    baseURL: "https://server-react-native-app.onrender.com"
 })
 
 export const refresh_tokens = async() => {
     try {
         const refreshToken = tokenStorage.getString("refresh_token")
-        const response = await axios.post(`${BASE_URL}/auth/refresh-token`, {
+        const response = await axios.post(`https://server-react-native-app.onrender.com/auth/refresh-token`, {
             refresh_token: refreshToken
         })
 

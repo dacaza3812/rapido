@@ -6,15 +6,15 @@ import MapViewDirectionsAlt from '../shared/MapViewDirectionsAlt'
 import { Colors } from '@/utils/Constants'
 import { getPoints } from '@/utils/mapUtils'
 import { mapStyles } from '@/styles/mapStyles'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize'
+import CustomText from '../shared/CustomText'
 
 const apikey = process.env.EXPO_PUBLIC_MAPBOX_API_KEY || "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ"
 
-const LiveTrackingMap: FC<{height: number, drop: any, pickup: any, captain: any, status:string}> = ({
+const CaptainLiveTracking: FC<{ drop: any, pickup: any, captain: any, status:string}> = ({
     drop,
     status,
-    height,
     pickup,
     captain
 }) => {
@@ -23,7 +23,6 @@ const LiveTrackingMap: FC<{height: number, drop: any, pickup: any, captain: any,
     const [isUserInteracting, setIsUserInteracting] = useState(false)
 
     const fitToMarkers = async() => {
-        console.log("CLIC")
         if(isUserInteracting) return;
         const coordinates = [];
         
@@ -51,6 +50,12 @@ const LiveTrackingMap: FC<{height: number, drop: any, pickup: any, captain: any,
         }
     }
 
+    const fitToMarkerWithDelay = () => {
+        setTimeout(() => {
+            fitToMarkers();
+        }, 500);
+    };
+
     const calculateInitialRegion = () => {
             if(pickup?.latitude && drop?.latitude){
                 const latitude = (pickup?.latitude + drop?.latitude) / 2
@@ -74,7 +79,7 @@ const LiveTrackingMap: FC<{height: number, drop: any, pickup: any, captain: any,
     }, [drop?.latitude, pickup?.latitude, captain.latitude])
 
   return (
-    <View style={{height: height, width: "100%"}}>
+    <View style={{flex: 1}}>
           <MapView
               ref={mapRef}
               maxZoomLevel={20}
@@ -100,12 +105,12 @@ const LiveTrackingMap: FC<{height: number, drop: any, pickup: any, captain: any,
         { 
                 captain?.latitude && pickup?.latitude && (
                     <MapViewDirectionsAlt
-                        origin={captain}
-                        destination={status === "START" ? pickup: drop}
+                        origin={status === "START" ? pickup: captain}
+                        destination={status === "START" ? captain: drop}
                         apikey={apikey}
                         strokeWidth={5}
                         precision="high"
-                        onReady={fitToMarkers}
+                        onReady={fitToMarkerWithDelay}
                         strokeColor={Colors.iosColor}
                         onError={(err) => console.log(err)}
                     />
@@ -172,6 +177,13 @@ const LiveTrackingMap: FC<{height: number, drop: any, pickup: any, captain: any,
             }
 </MapView>
 
+            <TouchableOpacity style={mapStyles.gpsLiveButton} onPress={() => {}}>
+                <CustomText fontFamily='SemiBold' fontSize={10}>
+                    Abir Live GPS
+                </CustomText>
+                <FontAwesome6 name="location-arrow" size={RFValue(12)} color="#000"/>
+            </TouchableOpacity>
+
     <TouchableOpacity style={mapStyles.gpsButton} onPress={fitToMarkers}>
         <MaterialCommunityIcons name='crosshairs-gps' size={RFValue(16)} color="#3C75BE"/>
     </TouchableOpacity>
@@ -182,4 +194,4 @@ const LiveTrackingMap: FC<{height: number, drop: any, pickup: any, captain: any,
   )
 }
 
-export default memo(LiveTrackingMap)
+export default memo(CaptainLiveTracking)

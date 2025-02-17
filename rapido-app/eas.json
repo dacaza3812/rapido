@@ -1,13 +1,27 @@
 {
-    "build": {
-      "development": {
-        "developmentClient": true,
-        "distribution": "internal"
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
       },
-      "preview": {
-        "distribution": "internal"
-      },
-      "production": {}
-    }
+      "env": {
+        "EXPO_PUBLIC_MAP_API_KEY": "AIzaSyD0o9J_DVjl6z8flmxGNTN9-DD9i112y8o",
+        "EXPO_PUBLIC_MAPBOX_API_KEY": "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ",
+        "EXPO_PUBLIC_BASE_URL": "https://server-react-native-app.onrender.com",
+        "EXPO_PUBLIC_BASE_URL_WS": "ws://server-react-native-app.onrender.com"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "preview4": {
+      "distribution": "internal"
+    },
+    "production": {}
   }
-  
+}

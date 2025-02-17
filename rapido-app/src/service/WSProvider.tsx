@@ -33,7 +33,7 @@ export const WSProvider: React.FC<{children: React.ReactNode}> = ({children}) =>
                 socket.current.disconnect()
             }
 
-            socket.current = io(SOCKET_URL, {
+            socket.current = io("ws://server-react-native-app.onrender.com", {
                 transports: ["websocket"],
                 withCredentials: true,
                 extraHeaders: {

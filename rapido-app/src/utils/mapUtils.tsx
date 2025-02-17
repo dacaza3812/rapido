@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useUserStore } from "@/store/userStore";
-const apikey = process.env.EXPO_PUBLIC_MAPBOX_API_KEY || ""
+const apikey = process.env.EXPO_PUBLIC_MAPBOX_API_KEY || "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ"
 
 export const getLatLong = async (placeId: string, description: string) => {
     try {
