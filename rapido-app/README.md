@@ -49,7 +49,13 @@ Join our community of developers creating universal apps.
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 
-
+# https://dashboard.render.com/web/srv-cup1dqqj1k6c739ep5i0/logs
+# npm config set registry https://registry.yarnpkg.com
+# 
+# eas build -p android --profile beta
+# eas build -p android --profile development
+# eas update:configure
+# eas update --chanel preview --platform android --message "Actualizando algunas cosas"
 6:48
 
 FA:C2:34:61:2C:59:9E:0F:08:72:17:6A:CA:D1:1E:66:1B:D5:64:15

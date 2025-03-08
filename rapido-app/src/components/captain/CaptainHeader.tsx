@@ -52,7 +52,7 @@ const CaptainHeader = () => {
                 <MaterialIcons name='logout' size={24} color="black" onPress={() => logout(disconnect)}/>
                 <TouchableOpacity style={captainStyles.toggleContainer} onPress={() => setOnDuty(!onDuty)}>
                 <CustomText fontFamily='SemiBold' fontSize={12} style={{color: "#888"}}>
-                    {onDuty ? "ON-DUTY" : "OFF-DUTY"}
+                    {onDuty ? "EN SERVICIO" : "FUERA DE SERVICIO"}
                 </CustomText>
 
                 <Image

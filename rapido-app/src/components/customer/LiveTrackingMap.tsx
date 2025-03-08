@@ -23,7 +23,6 @@ const LiveTrackingMap: FC<{height: number, drop: any, pickup: any, captain: any,
     const [isUserInteracting, setIsUserInteracting] = useState(false)
 
     const fitToMarkers = async() => {
-        console.log("CLIC")
         if(isUserInteracting) return;
         const coordinates = [];
         

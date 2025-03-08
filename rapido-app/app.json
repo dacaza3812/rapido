@@ -2,10 +2,10 @@
   "expo": {
     "name": "Rapido",
     "slug": "rapido",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "rapido",
     "newArchEnabled": true,
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -18,6 +18,9 @@
       "bundleIdentifier": "com.dacaza.rapido",
       "config": {
         "googleMapsApiKey": "AIzaSyD0o9J_DVjl6z8flmxGNTN9-DD9i112y8o"
+      },
+      "runtimeVersion": {
+        "policy": "appVersion"
       }
     },
     "android": {
@@ -33,8 +36,11 @@
       "package": "com.dacaza.rapido",
       "permissions": [
         "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.ACCESS_FINE_LOCATION"
-      ]
+      ],
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "bundler": "metro",
@@ -61,6 +67,9 @@
       "eas": {
         "projectId": "1a075b44-a36c-40f8-8dd7-87004a1c17e6"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/1a075b44-a36c-40f8-8dd7-87004a1c17e6"
     }
   }
 }

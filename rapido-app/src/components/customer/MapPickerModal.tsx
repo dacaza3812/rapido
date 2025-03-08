@@ -11,6 +11,8 @@ import LocationItem from './LocationItem';
 import { customMapStyle, tunasIntialRegion } from '@/utils/CustomMap';
 import { mapStyles } from '@/styles/mapStyles';
 
+// vista onde se selecciona la ubicacion para recoger o dejar
+
 interface MapPickerModalProps {
     visible: boolean;
     onClose: () => void;

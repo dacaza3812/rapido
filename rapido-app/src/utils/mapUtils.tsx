@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useUserStore } from "@/store/userStore";
+import { type calculateDistance  as calculateDistanceType} from "./types";
 const apikey = process.env.EXPO_PUBLIC_MAPBOX_API_KEY || "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ"
 
 export const getLatLong = async (placeId: string, description: string) => {
@@ -83,7 +84,7 @@ export const getPlacesSuggestions = async (query: string) => {
     }
 };
 
-export const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+export const calculateDistance = ({lat1, lon1, lat2, lon2}: calculateDistanceType) => {
     const R = 6371;
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
@@ -174,3 +175,10 @@ export const vehicleIcons: Record<'bike' | 'auto' | 'cabEconomy' | 'cabPremium',
     cabPremium: { icon: require('@/assets/icons/cab_premium.png') },
   };
   
+  export const calculateEstimatedArrival = (distance: number, averageSpeed: number = 40): Date => {
+    // Calcula el tiempo de viaje en minutos
+    const travelTimeMinutes = (distance / averageSpeed) * 60;
+    const arrivalDate = new Date();
+    arrivalDate.setMinutes(arrivalDate.getMinutes() + travelTimeMinutes);
+    return arrivalDate;
+  };

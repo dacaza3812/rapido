@@ -19,7 +19,7 @@ import LocationInput from '@/components/customer/LocationInput'
 import MapPickerModal from '@/components/customer/MapPickerModal'
 
 
-type focusType = "drop" | "pickup"
+type focusType = "destino" | "recogida"
 
 const Selectlocations = () => {
 
@@ -30,8 +30,8 @@ const Selectlocations = () => {
   const [dropCoords, setDropCoords] = useState<any>(null)
   const [drop, setDrop] = useState("")
   const [locations, setLocations] = useState([])
-  const [focusedInput, setFocusedInput] = useState<focusType>("drop")
-  const [modalTitle, setModalTitle] = useState<focusType>("drop")
+  const [focusedInput, setFocusedInput] = useState<focusType>("destino")
+  const [modalTitle, setModalTitle] = useState<focusType>("destino")
   const [isMapModalVisible, setMapModalVisible] = useState(false)
 
   const fetchLocation = async (query: string) => {
@@ -58,8 +58,9 @@ const Selectlocations = () => {
       alert("La dirección de recogida y de entrega no puede ser la misma.")
       return
     }
-
-    const distance = calculateDistance(lat1, lon1, lat2, lon2)
+    console.log("Type lat1: ", typeof lat1, ": ", lat1)
+    console.log("Type pickupCoords: ", typeof pickupCoords, ": ", pickupCoords)
+    const distance = calculateDistance({lat1, lon1, lat2, lon2})
 
     const minDistance = 0.3; // Distancia mínima en km (e.j: 500 metros)
     const maxDistance = 20; // Distancia máxima en km (e.j: 20 km)
@@ -102,7 +103,7 @@ const Selectlocations = () => {
     const data = await getLatLong(id, description)
     console.log("DATA", {id})
     if(data){
-      if(focusedInput === "drop"){
+      if(focusedInput === "destino"){
         setDrop(data?.address)
         setDropCoords(data)
       }else {
@@ -143,7 +144,7 @@ const Selectlocations = () => {
               setPickup(text)
               fetchLocation(text)
             }}
-            onFocus={() => setFocusedInput("pickup")}
+            onFocus={() => setFocusedInput("recogida")}
         />
         <LocationInput
             placeholder='Selecciona tu dirección de destino'
@@ -153,7 +154,7 @@ const Selectlocations = () => {
               setDrop(text)
               fetchLocation(text)
             }}
-            onFocus={() => setFocusedInput("drop")}
+            onFocus={() => setFocusedInput("destino")}
         />
 
         <CustomText fontFamily='Medium' fontSize={10} style={uiStyles.suggestionText}>
@@ -187,16 +188,16 @@ const Selectlocations = () => {
 
                   <MapPickerModal
                     selectedLocation={{
-                      latitude: focusedInput === "drop" ? dropCoords?.latitude : pickupCoords?.latitude,
-                      longitude: focusedInput === "drop" ? dropCoords?.longitude : pickupCoords?.longitude,
-                      address: focusedInput == "drop" ? drop : pickup
+                      latitude: focusedInput === "destino" ? dropCoords?.latitude : pickupCoords?.latitude,
+                      longitude: focusedInput === "destino" ? dropCoords?.longitude : pickupCoords?.longitude,
+                      address: focusedInput == "destino" ? drop : pickup
                     }}
                       title={modalTitle}
                       visible={isMapModalVisible}
                       onClose={() => setMapModalVisible(false)}
                       onSelectLocation={(data) => {
                         if(data){
-                          if(modalTitle === "drop"){
+                          if(modalTitle === "destino"){
                             setDropCoords(data)
                             setDrop(data?.address)
                           }else{

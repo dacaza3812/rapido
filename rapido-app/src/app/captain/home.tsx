@@ -101,7 +101,7 @@ const Home = () => {
             <CustomText fontSize={12} style={{textAlign: "center"}}>
               {onDuty ?
               "No hay carreras disponibles! Mantente activo" :
-              "Estás OFF-DUTY, cambia a ON-DUTY para empezar a ganar"  
+              "Estás FUERA DE SERVICIO, cambia a En Servicio para empezar a ganar"  
             }
             </CustomText>
           </View>

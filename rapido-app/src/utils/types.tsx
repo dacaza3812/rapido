@@ -22,3 +22,14 @@ interface CustomTextProps {
     numberOfLines?: number;
 }
 
+export type lat1 = number
+export type lon1 = number
+export type lat2 = number
+export type lon2 = number
+
+export interface calculateDistance {
+    lat1: lat1
+    lat2: lat2
+    lon1: lon1
+    lon2: lon2
+}

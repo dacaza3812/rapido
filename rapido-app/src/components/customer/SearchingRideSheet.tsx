@@ -33,7 +33,7 @@ const SearchingRideSheet: FC<{item: RideItem}> = ({item}) => {
         )}
         <View>
           <CustomText fontSize={10}>Buscando para ti</CustomText>
-          <CustomText fontFamily='Medium' fontSize={12}>{item?.vehicle} ride</CustomText>
+          <CustomText fontFamily='Medium' fontSize={12}>viaje en {item?.vehicle === "bike" ? "Motocicleta" : item?.vehicle === "auto" ? "Triciclo" : item?.vehicle === "cabEconomy" ? "Auto Económico" : item?.vehicle === "cabPremium" ? "Auto Premium" : item?.vehicle}</CustomText>
         </View>
         </View>
 
@@ -95,7 +95,7 @@ const SearchingRideSheet: FC<{item: RideItem}> = ({item}) => {
 
           <TouchableOpacity style={rideStyles.backButton2} onPress={() => router.back()}>
             <CustomText style={rideStyles?.backButtonText}>
-              Back
+              Atras
             </CustomText>
           </TouchableOpacity>
       </View>

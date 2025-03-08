@@ -13,6 +13,8 @@ import { reverseGeocode } from '@/utils/mapUtils'
 import haversine from 'haversine-distance'
 import { useWS } from '@/service/WSProvider'
 
+// Esta es la vista de mapa cuando se entra a la app
+
 const DraggableMap: FC<{height: number}> = ({height}) => {
     const mapRef = useRef<MapView>(null)
     const isFocused = useIsFocused()
@@ -95,7 +97,7 @@ const DraggableMap: FC<{height: number}> = ({height}) => {
     }
 
     // REAL CAPTAIN MARKERS
-    /*
+    
     useEffect(() => {
       if(location?.latitude && location?.longitude){
         emit("subscribeToZone", {latitude: location.latitude, longitude: location.longitude})
@@ -116,14 +118,14 @@ const DraggableMap: FC<{height: number}> = ({height}) => {
         }
       }
     },[location, emit, on, off])
-    */
+    
 
-    // SIMULATION OF CAPTAIN MARKERS
+    /* SIMULATION OF CAPTAIN MARKERS
     useEffect(() => {
       generateRandomMarkers();
     }, [location])
 
-    console.log(location)
+  */
 
     const generateRandomMarkers = () => {
       if(!location?.latitude || !location?.longitude || outOfRange) return;

@@ -72,10 +72,12 @@ const RoutesMap:FC<{drop:any,pickup:any}> = ({drop, pickup}) => {
   return (
     <View style={{flex: 1}}>
        <MapView
+        key="uniqueMapKey"
         ref={mapRef}
         followsUserLocation
         style={{flex: 1}}
         initialRegion={calculateInitialRegion()}
+        onMapReady={() => fitToMarkersWithDelay()}
         provider='google'
         showsCompass={false}
         showsIndoors={false}

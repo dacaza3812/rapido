@@ -108,7 +108,7 @@ export const uiStyles = StyleSheet.create({
     banner: {
         width: '100%',
         height: '100%',
-        resizeMode: 'contain',
+        resizeMode: 'cover',
 
     },
     bannerContainer: {

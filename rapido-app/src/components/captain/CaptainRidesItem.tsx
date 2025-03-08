@@ -9,6 +9,7 @@ import { calculateDistance, vehicleIcons } from '@/utils/mapUtils';
 import CustomText from '../shared/CustomText';
 import { Ionicons } from '@expo/vector-icons';
 import CounterButton from './CounterButton';
+import { resetAndNavigate } from '@/utils/Helpers';
 
 type VehicleType = "bike" | "auto" | "cabEconomy" | "cabPremium";
 
@@ -85,7 +86,7 @@ const CaptainRidesItem: FC<{item: RideItem, removeIt: () => void}> = ({item, rem
                     {
                         location && calculateDistance(
                             item?.pickup?.latitude,
-                            item?.pickup?.latitude,
+                            item?.pickup?.longitude,
                             location?.latitude,
                             location?.longitude,
                         ).toFixed(2) || "--"

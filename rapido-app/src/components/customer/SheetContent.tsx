@@ -8,11 +8,11 @@ import CustomText from '../shared/CustomText'
 import { commonStyles } from '@/styles/commonStyles'
 
 const cubes = [
-    {name: "Bike", imageUri: require("@/assets/icons/bike.png")},
+    {name: "Moto", imageUri: require("@/assets/icons/bike.png")},
     {name: "Auto", imageUri: require("@/assets/icons/auto.png")},
-    {name: "Cab Economy", imageUri: require("@/assets/icons/cab.png")},
-    {name: "Parcel", imageUri: require("@/assets/icons/parcel.png")},
-    {name: "Cap Premium", imageUri: require("@/assets/icons/cab_premium.png")},
+    {name: "Auto Económico", imageUri: require("@/assets/icons/cab.png")},
+    {name: "Paquete", imageUri: require("@/assets/icons/parcel.png")},
+    {name: "Auto Premium", imageUri: require("@/assets/icons/cab_premium.png")},
 ]
 
 const SheetContent = () => {
@@ -55,7 +55,7 @@ const SheetContent = () => {
       </View>
 
       <View style={uiStyles.bannerContainer}>
-        <Image source={require("@/assets/icons/rapido.jpg")} style={uiStyles.banner}/>
+        <Image source={require("@/assets/icons/banner.gif")} style={uiStyles.banner} resizeMode="contain" resizeMethod="resize"/>
       </View>
     </View>
   )

@@ -1,5 +1,5 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React, { FC } from 'react'
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native'
+import React, { FC, useEffect, useState } from 'react'
 import { useWS } from '@/service/WSProvider';
 import { rideStyles } from '@/styles/rideStyles';
 import { commonStyles } from '@/styles/commonStyles';
@@ -23,6 +23,16 @@ interface RideItem {
 
 
 const LiveTrackingSheet: FC<{ item: RideItem }> = ({ item }) => {
+  
+
+  useEffect(()=> {
+    if(item?.status === "COMPLETED"){
+      console.log(item?.status)
+      Alert.alert("Viaje Completado", "Usted será redirigido a la vista principal");
+      resetAndNavigate("/customer/home")
+      return
+    }
+  }, [item?.status])
 
   const { emit } = useWS()
   return (
