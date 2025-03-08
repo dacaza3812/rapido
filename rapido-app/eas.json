@@ -1,0 +1,47 @@
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_MAP_API_KEY": "AIzaSyD0o9J_DVjl6z8flmxGNTN9-DD9i112y8o",
+        "EXPO_PUBLIC_MAPBOX_API_KEY": "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ",
+        "EXPO_PUBLIC_BASE_URL": "https://server-react-native-app.onrender.com"
+      },
+      "channel": "preview"
+    },
+    "beta": {
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_MAP_API_KEY": "AIzaSyD0o9J_DVjl6z8flmxGNTN9-DD9i112y8o",
+        "EXPO_PUBLIC_MAPBOX_API_KEY": "sk.eyJ1IjoiZGFjYXphIiwiYSI6ImNtNmpjMmhmajBobWoya3ByNGhlMnZlZWgifQ.QJmQ4pkf78lHlqTFIUCXTQ",
+        "EXPO_PUBLIC_BASE_URL": "https://server-react-native-app.onrender.com"
+      },
+      "channel": "preview"
+    },
+    "preview3": {
+      "developmentClient": true,
+      "channel": "preview3"
+    },
+    "preview4": {
+      "distribution": "internal",
+      "channel": "preview4"
+    },
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development"
+    },
+    "development-simulator": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      },
+      "channel": "development-simulator"
+    }
+  }
+}

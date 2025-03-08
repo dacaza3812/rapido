@@ -48,3 +48,87 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+# https://dashboard.render.com/web/srv-cup1dqqj1k6c739ep5i0/logs
+# npm config set registry https://registry.yarnpkg.com
+# 
+# eas build -p android --profile beta
+# eas build -p android --profile development
+# eas update:configure
+# eas update --chanel preview --platform android --message "Actualizando algunas cosas"
+6:48
+
+FA:C2:34:61:2C:59:9E:0F:08:72:17:6A:CA:D1:1E:66:1B:D5:64:15
+
+    <View style={{height: height, width: "100%"}}>
+        <MapView
+          ref={mapRef}
+          maxZoomLevel={16}
+          minZoomLevel={12}
+          pitchEnabled={false}
+          style={{flex: 1}}
+          onRegionChangeComplete={handleRegionChangeComplete}
+          initialRegion={tunasIntialRegion}
+          provider='google'
+          customMapStyle={customMapStyle}
+          showsMyLocationButton={false}
+          showsCompass={false}
+          showsIndoors={false}
+          showsIndoorLevelPicker={false}
+          showsTraffic={false}
+          showsScale={false}
+          showsBuildings={false}
+          showsPointsOfInterest={false}
+          showsUserLocation={true}
+        >
+            {
+              markers?.map((marker:any, index:number) => (
+                marker.visible && (
+                  <Marker
+                    zIndex={index+1}
+                    key={index}
+                    flat
+                    anchor={{x:0.5, y:0.5}}
+                    coordinate={{latitude: marker?.latitude, longitude: marker?.longitude}}
+                  >
+                    <View style={{transform:[{rotate: `${marker?.rotation}deg`}]}}>
+                      <Image
+                        source={
+                          marker?.type === "bike" ?
+                          require("@/assets/icons/bike_marker.png"):
+                          marker?.type === "auto" ?
+                            require("@/assets/icons/auto_marker.png"):
+                            require("@/assets/icons/cab_marker.png")
+                        }
+                        style={{height: 40, width: 40, resizeMode:"contain"}}
+                      />
+                    </View>
+                  </Marker>
+                )
+              ))
+            }
+        </MapView>
+
+        <View style={mapStyles.centerMarkerContainer}>
+          <Image source={require("@/assets/icons/marker.png")} style={mapStyles.marker}/>
+        </View>
+
+        <TouchableOpacity style={mapStyles.gpsButton} onPress={handleGpsButtonPress}>
+          <MaterialCommunityIcons name="crosshairs-gps" size={RFValue(16)} color="#3C75BE"/>
+        </TouchableOpacity>
+
+        {
+          outOfRange && (
+            <View style={mapStyles.outOfRange}>
+              <FontAwesome6 name="road-circle-exclamation" size={24} color="red" />  
+            </View>
+          )
+        }
+
+    </View>
+
+    https://docs.mapbox.com/api/search/search-box/
+    https://console.mapbox.com/account/statistics/?from=12-31-2024&to=01-30-2025
+    https://docs.mapbox.com/api/search/geocoding/
+
+    todo funciona bien

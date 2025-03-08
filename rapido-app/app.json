@@ -1,41 +1,75 @@
 {
   "expo": {
-    "name": "rapido-app",
-    "slug": "rapido-app",
-    "version": "1.0.0",
+    "name": "Rapido",
+    "slug": "rapido",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
+    "icon": "./src/assets/images/icon.png",
+    "scheme": "rapido",
     "newArchEnabled": true,
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./src/assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dacaza.rapido",
+      "config": {
+        "googleMapsApiKey": "AIzaSyD0o9J_DVjl6z8flmxGNTN9-DD9i112y8o"
+      },
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyD0o9J_DVjl6z8flmxGNTN9-DD9i112y8o"
+        }
+      },
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dacaza.rapido",
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./src/assets/images/logo_t.png"
     },
     "plugins": [
       "expo-router",
       [
-        "expo-splash-screen",
+        "expo-location",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "1a075b44-a36c-40f8-8dd7-87004a1c17e6"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/1a075b44-a36c-40f8-8dd7-87004a1c17e6"
     }
   }
 }
